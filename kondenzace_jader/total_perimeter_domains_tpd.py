@@ -16,7 +16,7 @@ from scipy import stats
 
 
 
-def normalize_fractal(img):
+def normalize_tpd(img):
 
     saturation = 0.35
     p_low, p_high = np.percentile(img, (saturation, 100 - saturation))
@@ -88,7 +88,7 @@ def compute_total_perimeter_domains_tpd(img, mask):
     # plt.ylabel('Frequency')
     # plt.show()
 
-    return tpd
+    return tpd, skeleton, edges_bin
 
 
 
@@ -104,8 +104,8 @@ if __name__ == "__main__":
     img = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
     mask = mask[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
 
-    img = normalize_fractal(img)
+    img = normalize_tpd(img)
 
-    tpd = compute_total_perimeter_domains_tpd(img, mask)
+    tpd, skeleton, edges_bin = compute_total_perimeter_domains_tpd(img, mask)
 
     print(tpd)
