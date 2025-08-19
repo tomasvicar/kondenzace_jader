@@ -69,7 +69,9 @@ for fname in fnames:
         nuc_mask = (mask == nuc_num).astype(np.uint8)
 
 
-
+        bbox = cv2.boundingRect(nuc_mask)
+        img_crop = data_2d_dapi[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
+        mask_crop = nuc_mask[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
 
         
         # contours, _ = cv2.findContours(nuc_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
