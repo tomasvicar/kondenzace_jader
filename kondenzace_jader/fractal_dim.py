@@ -71,7 +71,7 @@ def compute_fractal_dimension(img, mask, plot=False):
         plt.show()
 
 
-    return slope
+    return slope, scales, counts
 
 
 
