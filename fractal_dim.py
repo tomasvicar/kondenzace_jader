@@ -72,11 +72,12 @@ def compute_fractal_dimension(img, mask, plot=False):
 
 
 
-def thresholding(img, mask):
+def thresholding_fractal(img, mask):
     
-    img_orig = img.copy()
+    # img_orig = img.copy()
 
-    p_low, p_high = np.percentile(img, (0.35, 100 - 0.35))  # 0.35% low/high
+    saturation = 0.35
+    p_low, p_high = np.percentile(img, (saturation, 100 - saturation))
     img = exposure.rescale_intensity(img, in_range=(p_low, p_high))
 
  
@@ -93,7 +94,7 @@ def thresholding(img, mask):
     # plt.legend()
     # plt.show()
 
-    binarized = img > 0.55
+    binarized = img > np.mean(img[mask])
 
     # plt.imshow(img)
     # plt.show()
@@ -113,10 +114,9 @@ if __name__ == "__main__":
     img = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
     mask = mask[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
 
-    binarized = thresholding(img, mask)
-
-
+    binarized = thresholding_fractal(img, mask)
     fd = compute_fractal_dimension(binarized, mask, plot=True)
+
     print(fd)
 
 
