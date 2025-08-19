@@ -58,7 +58,7 @@ def radial_analysis(img, mask):
 
     lines_values_avg = np.mean(lines_values, axis=0)
 
-    return lines_values_avg
+    return lines_values_avg, centroid
 
 
 
