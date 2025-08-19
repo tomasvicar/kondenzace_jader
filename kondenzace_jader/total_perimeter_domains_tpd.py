@@ -16,32 +16,23 @@ from scipy import stats
 
 
 
-def normalize_
-
-
-
-
-
-if __name__ == "__main__":
-   
-    img = imread('image_test.tif')
-    mask = imread('mask_test.png')
-
-    mask = mask == 1
-
-    bbox = cv2.boundingRect(mask.astype(np.uint8))
-    img = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
-    mask = mask[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
-
-    img_orig = img.copy()
-
+def normalize_fractal(img):
 
     saturation = 0.35
     p_low, p_high = np.percentile(img, (saturation, 100 - saturation))
     img = exposure.rescale_intensity(img, in_range=(p_low, p_high))
-
  
     img = exposure.equalize_hist(img)
+
+    return img
+
+
+
+
+
+def compute_total_perimeter_domains_tpd(img, mask):
+
+     
 
     edges_x = sobel(img, axis=0)
     edges_y = sobel(img, axis=1)
@@ -73,28 +64,48 @@ if __name__ == "__main__":
     tpd = skeleton_area / nuc_area
 
 
-    plt.imshow(edges, cmap='gray')
-    plt.title('Sobel Edges')
-    plt.axis('off')
-    plt.show()
+    # plt.imshow(edges, cmap='gray')
+    # plt.title('Sobel Edges')
+    # plt.axis('off')
+    # plt.show()
 
-    plt.imshow(edges_bin, cmap='gray')
-    plt.title('Binary Sobel Edges')
-    plt.axis('off')
-    plt.show()
+    # plt.imshow(edges_bin, cmap='gray')
+    # plt.title('Binary Sobel Edges')
+    # plt.axis('off')
+    # plt.show()
 
-    plt.imshow(skeleton, cmap='gray')
-    plt.title('Skeleton of Binary Sobel Edges')
-    plt.axis('off')
-    plt.show()
+    # plt.imshow(skeleton, cmap='gray')
+    # plt.title('Skeleton of Binary Sobel Edges')
+    # plt.axis('off')
+    # plt.show()
 
 
-    plt.hist(edges[mask].ravel(), bins=100, color='gray', alpha=0.7)
-    # plot th
-    plt.axvline(th, color='red', linestyle='--')
-    plt.title('Histogram of Sobel Edges')
-    plt.xlabel('Edge Strength')
-    plt.ylabel('Frequency')
-    plt.show()
+    # plt.hist(edges[mask].ravel(), bins=100, color='gray', alpha=0.7)
+    # # plot th
+    # plt.axvline(th, color='red', linestyle='--')
+    # plt.title('Histogram of Sobel Edges')
+    # plt.xlabel('Edge Strength')
+    # plt.ylabel('Frequency')
+    # plt.show()
+
+    return tpd
+
+
+
+if __name__ == "__main__":
+   
+    img = imread('image_test.tif')
+    mask = imread('mask_test.png')
+
+    mask = mask == 1
+
+
+    bbox = cv2.boundingRect(mask.astype(np.uint8))
+    img = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
+    mask = mask[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
+
+    img = normalize_fractal(img)
+
+    tpd = compute_total_perimeter_domains_tpd(img, mask)
 
     print(tpd)
