@@ -71,6 +71,9 @@ def compute_fractal_dimension(img, mask, plot=False):
         plt.show()
 
 
+    return slope
+
+
 
 def thresholding_fractal(img, mask):
     
