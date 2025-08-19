@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mypackage"
+version = "0.1.0"
+description = "for dapi nuc analysis"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Tomas Vicar", email = "tomasvicar@gmail.com" }
+]
+
+dependencies = [
+  "numpy",
+  "scikit-learn",
+]
+
+[project.urls]
+Homepage = "https://github.com/tomasvicar/kondenzace_jader"
