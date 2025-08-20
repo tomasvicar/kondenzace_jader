@@ -14,9 +14,7 @@ from scipy.interpolate import interp1d
 from skimage.measure import label, regionprops, regionprops_table
 from scipy.signal import resample
 
-from utils.read_ics_file import read_ics_file_ordered
-from utils.mat2gray import mat2gray_rgb_percentile
-from utils.reinterpolate_contour import reinterpolate_contour
+
 
 
 
@@ -52,7 +50,9 @@ def get_focus(zstack_rgb, plot=False):
 
 
 if __name__ == "__main__":
-
+    from utils.read_ics_file import read_ics_file_ordered
+    from utils.mat2gray import mat2gray_rgb_percentile
+    from utils.reinterpolate_contour import reinterpolate_contour
 
 
     data_path = r"D:\kondenzace_jader\data\Chromatin Architecture Analyses Python\Mikroskop horní\zz_Original data files"
@@ -91,5 +91,5 @@ if __name__ == "__main__":
         # data_2d = np.round(data_2d * 255).astype(np.uint8)
 
         # mask, flow, style = model.eval(data_2d)
-        
+
         focus_slice = get_focus(data, plot=True)
