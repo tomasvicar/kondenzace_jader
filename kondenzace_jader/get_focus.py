@@ -1,6 +1,6 @@
 
 from glob import glob
-from cellpose import models
+
 from scipy.ndimage import gaussian_filter
 from scipy.ndimage import median_filter
 import numpy as np
@@ -53,6 +53,7 @@ if __name__ == "__main__":
     from utils.read_ics_file import read_ics_file_ordered
     from utils.mat2gray import mat2gray_rgb_percentile
     from utils.reinterpolate_contour import reinterpolate_contour
+    from cellpose import models
 
 
     data_path = r"D:\kondenzace_jader\data\Chromatin Architecture Analyses Python\Mikroskop horní\zz_Original data files"
