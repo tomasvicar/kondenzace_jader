@@ -88,7 +88,7 @@ def compute_total_perimeter_domains_tpd(img, mask):
     # plt.ylabel('Frequency')
     # plt.show()
 
-    return tpd, skeleton, edges_bin
+    return tpd, skeleton, edges_bin, edges
 
 
 
@@ -106,6 +106,6 @@ if __name__ == "__main__":
 
     img = normalize_tpd(img)
 
-    tpd, skeleton, edges_bin = compute_total_perimeter_domains_tpd(img, mask)
+    tpd, skeleton, edges_bin, edges = compute_total_perimeter_domains_tpd(img, mask)
 
     print(tpd)

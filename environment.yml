@@ -8,7 +8,8 @@ dependencies:
   - python=3.10
   - matplotlib
   - pip
-  
+  - pandas
+  - openpyxl
   - bioimageio.core
   - jupyter
   - pytorch=2.5.1
@@ -24,3 +25,4 @@ dependencies:
     - bioformats_jar
     - "cellpose[gui]"
     - aicsimageio
+    - pca

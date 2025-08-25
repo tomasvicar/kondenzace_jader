@@ -15,3 +15,5 @@ from glob import glob
 folder_path = "/content/drive/Shareddrives/martin_data/URGENT_Naoparticle Manuscript Toufar"
 
 print(len(glob(folder_path + '/**/01.ics', recursive=True)))
+
+rclone copy "/mnt/d/kondenzace_jader/data/Chromatin Architecture Analyses Python/Mikroskop horní/zz_Original data files_results" "gdrive:Chromatin Architecture Analyses Python/Mikroskop horní/zz_Original data files_results" --drive-team-drive=0ANYLW_e5rtsnUk9PVA --progress
